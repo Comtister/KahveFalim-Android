@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "941550661857",
+    "firebase_url": "https://kahvefalim-1600886862239.firebaseio.com",
+    "project_id": "kahvefalim-1600886862239",
+    "storage_bucket": "kahvefalim-1600886862239.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941550661857:android:542dfc85363c05b08987a0",
+        "android_client_info": {
+          "package_name": "com.example.kahvefalm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941550661857-4b7kel16pbp3ifneflqi3brfkrt725fl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kahvefalm",
+            "certificate_hash": "b38124fd9ad1b9849b7672b9200528da294e23ba"
+          }
+        },
+        {
+          "client_id": "941550661857-bqu7cet5bd5tlu80vb2j015tqpvm1agb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaULKIN3Lp8dxcdYys3UV1S1vfC1vwa80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941550661857-70ebctrk589jmfg8nhf9n200966n203n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

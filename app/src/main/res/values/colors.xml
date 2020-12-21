@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="appRed">#FF453A</color>
+    <color name="black">#000000</color>
+    <color name="appBackground">#B3FF453A</color>
+    <color name="mainBackground">#B2FF453A</color>
+    <color name="secondaryBackground">#E6E6E6</color>
+
+    <color name="darkPrimaryColor">#D32F2F</color>
+    <color name="lightPrimaryColor">#FFCDD2</color>
+    <color name="PrimaryColor">#F44336</color>
+    <color name="accentColor">#FF5252</color>
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#757575</color>
+    <color name="dividerColor">#BDBDBD</color>
+
+    <color name="PrimaryColor2">#EC7B7A</color>
+    <color name="ArkaGri">#C8C8C8</color>
+
+
+
+
+
+
+</resources>

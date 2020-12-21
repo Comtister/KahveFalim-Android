@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <item
+                android:id="@+id/profil_action"
+                android:title="Profil"/>
+
+        <item
+                android:id="@+id/fallarim_action"
+                android:title="Fallrım"/>
+        <item
+                android:id="@+id/ayarlar_action"
+                android:title="Ayarlar"/>
+        <item
+                android:id="@+id/kullanim_action"
+                android:title="Kullanım Koşulları"/>
+        <item
+                android:id="@+id/hakkimda_action"
+                android:title="Bize Ulaşın"/>
+
+</menu>

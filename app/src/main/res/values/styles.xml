@@ -1,0 +1,22 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/PrimaryColor2</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/accentColor</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+
+    </style>
+
+    <style name="profile_items_style" parent="Theme.MaterialComponents.Light">
+
+
+
+
+
+    </style>
+
+</resources>
