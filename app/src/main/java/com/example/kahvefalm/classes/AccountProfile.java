@@ -29,6 +29,8 @@ public class AccountProfile {
         this.medeniDurum = medeniDurum;
     }
 
+
+
     public MedeniDurum getMedeniDurum() {
         return medeniDurum;
     }
