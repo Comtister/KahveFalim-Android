@@ -11,10 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.kahvefalm.R;
 import com.example.kahvefalm.classes.AccountProfile;
 import com.example.kahvefalm.classes.AccountProfileManager;
@@ -22,8 +20,7 @@ import com.example.kahvefalm.enums.MedeniDurum;
 import com.example.kahvefalm.enums.Cinsiyet;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
+
 
 
 
@@ -32,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     Intent intent;
 
     SharedPreferences sharedPreferences;
+
     MaterialToolbar toolbar;
 
     Spinner spinner;
@@ -44,9 +42,11 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
 
     String cinsiyetler[];
     String medeniDurumlar[];
+
     MedeniDurum medeniDurum;
     Cinsiyet accountCinsiyet;
     int yas;
+
     AccountProfile gelenAccount;
 
     ArrayAdapter adapter;
@@ -57,6 +57,54 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
+       setToolbar();
+       setSpinners();
+
+        //Setting Views
+        isimView = (TextView)findViewById(R.id.adView);
+        mailView = (TextView)findViewById(R.id.mailView);
+        yasEditText = (EditText)findViewById(R.id.yasEditText);
+
+        //Get shared preference
+        sharedPreferences = getSharedPreferences("Account",MODE_PRIVATE);
+
+        //Set profile
+        profilDoldur();
+
+
+
+
+
+
+    }
+
+    private void setSpinners(){
+
+        //Setting Cinsiyet Spinner
+        spinner = (Spinner)findViewById(R.id.cinsiyetSpinner);
+
+        cinsiyetler = new String[]{Cinsiyet.KADIN.toString(),Cinsiyet.ERKEK.toString(),Cinsiyet.DİĞER.toString()};
+        adapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,cinsiyetler);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+        //Setting Durum Spinner
+
+        durumSpinner = (Spinner)findViewById(R.id.medeniDurumSpinner);
+
+        medeniDurumlar = new String[]{MedeniDurum.Bekar.toString(),MedeniDurum.Nisanli.toString(),MedeniDurum.Evli.toString(),MedeniDurum.Dul.toString()
+                ,MedeniDurum.Ayri.toString(),MedeniDurum.Diğer.toString()};
+
+        durumAdapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,medeniDurumlar);
+        durumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        durumSpinner.setAdapter(durumAdapter);
+        durumSpinner.setOnItemSelectedListener(this);
+
+
+    }
+
+    private void setToolbar(){
 
         //Set Toolbar Settings
         toolbar = (MaterialToolbar)findViewById(R.id.toolbarProfile);
@@ -71,48 +119,11 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
             }
         });
 
-        //Setting Views
-
-        isimView = (TextView)findViewById(R.id.adView);
-        mailView = (TextView)findViewById(R.id.mailView);
-        yasEditText = (EditText)findViewById(R.id.yasEditText);
-        //Setting Spinner
-        spinner = (Spinner)findViewById(R.id.cinsiyetSpinner);
-        durumSpinner = (Spinner)findViewById(R.id.medeniDurumSpinner);
-
-
-        cinsiyetler = new String[]{Cinsiyet.ERKEK.cinsiyet,Cinsiyet.KADIN.cinsiyet,Cinsiyet.BELIRTILMEMIŞ.cinsiyet};
-
-        medeniDurumlar = new String[]{MedeniDurum.Bekar.durum,MedeniDurum.Nisanli.durum,MedeniDurum.Evli.durum,MedeniDurum.Dul.durum
-        ,MedeniDurum.Ayri.durum,MedeniDurum.BelirtmekIstemiyorum.durum};
-
-
-        adapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,cinsiyetler);
-        durumAdapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,medeniDurumlar);
-
-       adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       durumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-
-       spinner.setAdapter(adapter);
-       spinner.setOnItemSelectedListener(this);
-
-       durumSpinner.setAdapter(durumAdapter);
-       durumSpinner.setOnItemSelectedListener(this);
-
-
-        //Get shared preference
-        sharedPreferences = getSharedPreferences("Account",MODE_PRIVATE);
-        //Set profile
-        profilDoldur();
-
-
-
-
 
 
     }
+
+
 
 
 
@@ -136,10 +147,10 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
 
             try {
                 yasEditText.setText(String.valueOf(profileManager.getAccount().getYas()));
+                //Search index value current cinsiyet and durum value and set index spinner view
+                spinner.setSelection(BinarySearchStr(cinsiyetler,profileManager.getAccount().getCinsiyet().toString()));
 
-                spinner.setSelection(BinarySearchStr(cinsiyetler,profileManager.getAccount().getCinsiyet().cinsiyet));
-
-                durumSpinner.setSelection(BinarySearchStr(medeniDurumlar,profileManager.getAccount().getMedeniDurum().durum));
+                durumSpinner.setSelection(BinarySearchStr(medeniDurumlar,profileManager.getAccount().getMedeniDurum().toString()));
 
             }catch (Exception e){
                 e.printStackTrace();
@@ -155,6 +166,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
 
         if(adapterView.getId() == spinner.getId()){
             accountCinsiyet = Cinsiyet.values()[i];
+
         }
 
         if(adapterView.getId() == durumSpinner.getId()){
@@ -202,10 +214,6 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         try {
             AccountProfileManager profileManager = new AccountProfileManager(getApplicationContext());
             profileManager.exitAuth(this);
-            /*
-            FirebaseAuth.getInstance().signOut();
-            finishAffinity();
-            System.exit(0);*/
         }catch (Exception e){
             e.printStackTrace();
             e.getLocalizedMessage();

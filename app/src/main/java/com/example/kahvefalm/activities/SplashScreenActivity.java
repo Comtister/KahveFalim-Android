@@ -3,16 +3,11 @@ package com.example.kahvefalm.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-
-
 import com.example.kahvefalm.R;
 import com.example.kahvefalm.classes.AccountProfile;
 import com.example.kahvefalm.classes.AccountProfileManager;
@@ -24,13 +19,12 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.gson.Gson;
+
 
 
 public class SplashScreenActivity extends AppCompatActivity{
@@ -70,8 +64,6 @@ public class SplashScreenActivity extends AppCompatActivity{
                 mGoogleSignInClient = GoogleSignIn.getClient(getApplicationContext(), gso);
 
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-
-
 
                 if(account != null){
                     //Kullanıcı önceden oturum açtı ise gizle
@@ -113,10 +105,10 @@ public class SplashScreenActivity extends AppCompatActivity{
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             firebaseAuthWithGoogle(account.getIdToken());
-            System.out.println("TOKEN ="+account.getIdToken());
+            AccountProfileManager profileManager = new AccountProfileManager(getApplicationContext());
             //Giriş Kontrolü 1:ilk giriş 0:sonraki girişler
 
-            AccountProfileManager profileManager = new AccountProfileManager(getApplicationContext());
+
 
             if(profileManager.isFirstAuth()){
 
@@ -146,7 +138,7 @@ public class SplashScreenActivity extends AppCompatActivity{
 
 
     private void firebaseAuthWithGoogle(String token){
-        System.out.println("Vay anam");
+
         AuthCredential credential = GoogleAuthProvider.getCredential(token, null);
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -156,11 +148,11 @@ public class SplashScreenActivity extends AppCompatActivity{
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            System.out.println("Vay anam"+user.getUid());
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            System.out.println("Vay anam2");
+
 
                         }
 

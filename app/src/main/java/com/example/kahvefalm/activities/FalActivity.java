@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,12 +22,12 @@ import androidx.core.content.FileProvider;
 import com.example.kahvefalm.R;
 import com.example.kahvefalm.classes.AccountProfile;
 import com.example.kahvefalm.classes.AccountProfileManager;
+import com.example.kahvefalm.classes.DefaultFalData;
 import com.example.kahvefalm.classes.FirebaseManagerClass;
 import com.example.kahvefalm.enums.FalTipi;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +40,7 @@ import java.util.Hashtable;
 public class FalActivity extends AppCompatActivity {
 
     MaterialToolbar toolbar;
+
     ChipGroup chipGroup;
     Chip chip[];
     Chip selectedChip;
@@ -47,44 +49,46 @@ public class FalActivity extends AppCompatActivity {
     ImageView imageView[];
     ImageView selectedView;
 
+    EditText message;
+    String messageText;
+
     Dictionary<Integer,byte[]> imageDatas;
     boolean selectedControl[];
 
-    FirebaseFirestore firestore;
+
 
     ByteArrayOutputStream byteArrayOutputStream;
-
     String currentPhotoPath;
 
     AccountProfileManager accountProfileManager;
     AccountProfile accountProfile;
 
-    int counter = 0;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fal);
-
+        //Get profile
         accountProfileManager = new AccountProfileManager(this);
         accountProfile = accountProfileManager.getAccount();
 
-        firestore = FirebaseFirestore.getInstance();
+        message = (EditText)findViewById(R.id.editTextMessage);
 
+        //Image control array and imageBuffer array
         selectedControl = new boolean[3];
-
         imageDatas = new Hashtable<>();
-
-        toolbar = (MaterialToolbar) findViewById(R.id.toolbarFal);
-
         imageView = new ImageView[3];
 
         imageView[0] = (ImageView)findViewById(R.id.imageView1);
         imageView[1] = (ImageView)findViewById(R.id.imageView2);
         imageView[2] = (ImageView)findViewById(R.id.imageView3);
 
+
+
         chipsSetup();
 
+        toolbar = (MaterialToolbar) findViewById(R.id.toolbarFal);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +101,7 @@ public class FalActivity extends AppCompatActivity {
 
     private void chipsSetup(){
 
+
         chipGroup = (ChipGroup) findViewById(R.id.chipGroup);
 
         chip = new Chip[4];
@@ -107,13 +112,14 @@ public class FalActivity extends AppCompatActivity {
         chip[3] = (Chip) findViewById(R.id.chipSaglık);
 
         chip[0].setChecked(true);
+        selectedChip = chip[0];
 
         chipList = new Hashtable<>();
 
         chipList.put(chip[0].getId(),FalTipi.GENEL);
-        chipList.put(chip[1].getId(),FalTipi.ASK);
+        chipList.put(chip[1].getId(),FalTipi.AŞK);
         chipList.put(chip[2].getId(),FalTipi.PARA);
-        chipList.put(chip[3].getId(),FalTipi.SAGLIK);
+        chipList.put(chip[3].getId(),FalTipi.SAĞLIK);
 
         chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
             @Override
@@ -263,7 +269,12 @@ public class FalActivity extends AppCompatActivity {
 
         if(selectedControl[0] && selectedControl[1] && selectedControl[2]){
 
-            FirebaseManagerClass.SendingManager sendingManager = new FirebaseManagerClass(accountProfile).new SendingManager(imageDatas);
+            messageText = message.getText().toString();
+
+            DefaultFalData data = new DefaultFalData(accountProfile,null,messageText,selectedChip.getText().toString());
+
+            FirebaseManagerClass.SendingManager sendingManager = new FirebaseManagerClass(accountProfile).new SendingManager(this,imageDatas,messageText,selectedChip.getText().toString());
+
             sendingManager.sendFal();
 
         }else{

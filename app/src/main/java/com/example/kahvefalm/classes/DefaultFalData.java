@@ -1,16 +1,25 @@
 package com.example.kahvefalm.classes;
 
+import android.net.Uri;
+
 import com.example.kahvefalm.enums.FalTipi;
 
+import java.io.Serializable;
 import java.net.URL;
-import java.util.Dictionary;
+import java.util.ArrayList;
 
-public class DefaultFalData {
 
-    public Dictionary<Integer,byte[]> imageDatas;
+public class DefaultFalData implements Serializable {
+
     public AccountProfile accountProfile;
-    public URL[] imageDataURL;
+    public ArrayList<Uri> imageDataURL;
     public String message;
-    public FalTipi falTipi;
+    public String falTipi;
 
+    public DefaultFalData(AccountProfile accountProfile, ArrayList<Uri> imageDataURL, String message, String falTipi) {
+        this.accountProfile = accountProfile;
+        this.imageDataURL = imageDataURL;
+        this.message = message;
+        this.falTipi = falTipi;
+    }
 }

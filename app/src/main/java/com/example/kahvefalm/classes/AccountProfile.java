@@ -3,7 +3,9 @@ package com.example.kahvefalm.classes;
 import com.example.kahvefalm.enums.Cinsiyet;
 import com.example.kahvefalm.enums.MedeniDurum;
 
-public class AccountProfile {
+import java.io.Serializable;
+
+public class AccountProfile implements Serializable {
 
     private String name;
     private String mail;

@@ -5,14 +5,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.example.kahvefalm.R;
-import com.example.kahvefalm.activities.FalActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -50,10 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void falBtnPress(View view){
 
         Intent intent = new Intent(this, FalActivity.class);
-
         startActivity(intent);
-
-
 
     }
 

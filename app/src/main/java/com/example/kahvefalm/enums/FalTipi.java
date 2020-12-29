@@ -1,12 +1,10 @@
 package com.example.kahvefalm.enums;
 
-public enum FalTipi {
+import java.io.Serializable;
 
-    GENEL("GENEL"),ASK("AŞK"),PARA("PARA"),SAGLIK("SAGLIK");
+public enum FalTipi implements Serializable {
 
-    public String getValue;
+    GENEL,AŞK,PARA,SAĞLIK;
 
-    FalTipi(String getValue) {
-        this.getValue = getValue;
-    }
+
 }
