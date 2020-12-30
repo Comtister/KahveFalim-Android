@@ -2,9 +2,14 @@ package com.example.kahvefalm.activities;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -48,6 +53,10 @@ public class SplashScreenActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        if(!(checkNet())){
+            Log.i("vay anamk","Net Yok");
+        }
+
         name = new String[2];
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -78,6 +87,18 @@ public class SplashScreenActivity extends AppCompatActivity{
             }
         },1000);
 
+
+    }
+
+
+    private boolean checkNet(){
+
+        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
+        Network netx = connectivityManager.getActiveNetwork();
+        NetworkCapabilities nc = connectivityManager.getNetworkCapabilities(netx);
+        boolean durum = nc == null ? false : true;
+
+        return durum;
 
     }
 

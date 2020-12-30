@@ -271,9 +271,9 @@ public class FalActivity extends AppCompatActivity {
 
             messageText = message.getText().toString();
 
-            DefaultFalData data = new DefaultFalData(accountProfile,null,messageText,selectedChip.getText().toString());
+            DefaultFalData data = new DefaultFalData(imageDatas,messageText,selectedChip.getText().toString());
 
-            FirebaseManagerClass.SendingManager sendingManager = new FirebaseManagerClass(accountProfile).new SendingManager(this,imageDatas,messageText,selectedChip.getText().toString());
+            FirebaseManagerClass.SendingManager sendingManager = new FirebaseManagerClass(getApplicationContext()).new SendingManager(this,data);
 
             sendingManager.sendFal();
 
