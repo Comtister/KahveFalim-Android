@@ -1,21 +1,17 @@
-package com.example.kahvefalm.activities;
+package com.example.kahvefalm.Controllers;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import com.example.kahvefalm.R;
-import com.example.kahvefalm.classes.AccountProfile;
-import com.example.kahvefalm.classes.AccountProfileManager;
+import com.example.kahvefalm.ModelClasses.AccountProfile;
+import com.example.kahvefalm.ModelClasses.AccountProfileManager;
+import com.example.kahvefalm.ModelClasses.NetworkManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -46,6 +42,8 @@ public class SplashScreenActivity extends AppCompatActivity{
 
     MaterialAlertDialogBuilder materialAlertDialogBuilder;
 
+    MaterialAlertDialogBuilder networkDialog;
+
 
 
     @Override
@@ -53,8 +51,10 @@ public class SplashScreenActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        if(!(checkNet())){
-            Log.i("vay anamk","Net Yok");
+        if(!(new NetworkManager(getApplicationContext()).checkNet())){
+            //Dialog pop and exit application
+            networkDialogPop();
+            return;
         }
 
         name = new String[2];
@@ -90,17 +90,22 @@ public class SplashScreenActivity extends AppCompatActivity{
 
     }
 
+    private void networkDialogPop(){
 
-    private boolean checkNet(){
-
-        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
-        Network netx = connectivityManager.getActiveNetwork();
-        NetworkCapabilities nc = connectivityManager.getNetworkCapabilities(netx);
-        boolean durum = nc == null ? false : true;
-
-        return durum;
+        networkDialog = new MaterialAlertDialogBuilder(this);
+        networkDialog.setTitle("Hata")
+                .setMessage("Uygulamayı kullanabilmeniz için ağ bağlantınızın olması gerekir.")
+                .setNeutralButton("Çıkış", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                        System.exit(0);
+                    }
+                });
+        networkDialog.show();
 
     }
+
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();

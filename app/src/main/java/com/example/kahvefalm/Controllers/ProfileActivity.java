@@ -1,4 +1,4 @@
-package com.example.kahvefalm.activities;
+package com.example.kahvefalm.Controllers;
 
 
 import android.content.DialogInterface;
@@ -14,8 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.kahvefalm.R;
-import com.example.kahvefalm.classes.AccountProfile;
-import com.example.kahvefalm.classes.AccountProfileManager;
+import com.example.kahvefalm.ModelClasses.AccountProfile;
+import com.example.kahvefalm.ModelClasses.AccountProfileManager;
 import com.example.kahvefalm.enums.MedeniDurum;
 import com.example.kahvefalm.enums.Cinsiyet;
 import com.google.android.material.appbar.MaterialToolbar;

@@ -1,4 +1,4 @@
-package com.example.kahvefalm.classes;
+package com.example.kahvefalm.ModelClasses;
 
 import com.example.kahvefalm.enums.Cinsiyet;
 import com.example.kahvefalm.enums.MedeniDurum;

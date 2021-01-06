@@ -1,4 +1,4 @@
-package com.example.kahvefalm.activities;
+package com.example.kahvefalm.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;

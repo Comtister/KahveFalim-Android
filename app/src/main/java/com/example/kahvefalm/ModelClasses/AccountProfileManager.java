@@ -1,11 +1,11 @@
-package com.example.kahvefalm.classes;
+package com.example.kahvefalm.ModelClasses;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
-import com.example.kahvefalm.activities.SplashScreenActivity;
+import com.example.kahvefalm.Controllers.SplashScreenActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -14,22 +14,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-public class AccountProfileManager {
+public class AccountProfileManager extends NetworkManager {
 
     AccountProfile profile = null;
-    Context context;
     SharedPreferences sharedPreferences;
 
     private GoogleSignInClient mGoogleSignInClient;
 
     public AccountProfileManager(Context context) {
-        this.context = context;
+        super(context);
         sharedPreferences = this.context.getSharedPreferences("Account",Context.MODE_PRIVATE);
     }
 
-    public AccountProfileManager(AccountProfile profile, Context context) {
+    public AccountProfileManager(AccountProfile profile,Context context) {
+        super(context);
         this.profile = profile;
-        this.context = context;
         sharedPreferences = this.context.getSharedPreferences("Account",Context.MODE_PRIVATE);
 
 

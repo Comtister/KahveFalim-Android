@@ -1,6 +1,7 @@
-package com.example.kahvefalm.activities;
+package com.example.kahvefalm.Controllers;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,14 +22,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import com.example.kahvefalm.R;
-import com.example.kahvefalm.classes.AccountProfile;
-import com.example.kahvefalm.classes.AccountProfileManager;
-import com.example.kahvefalm.classes.DefaultFalData;
-import com.example.kahvefalm.classes.FirebaseManagerClass;
+import com.example.kahvefalm.ModelClasses.AccountProfile;
+import com.example.kahvefalm.ModelClasses.AccountProfileManager;
+import com.example.kahvefalm.ModelClasses.DefaultFalData;
+import com.example.kahvefalm.ModelClasses.FirebaseManagerClass;
 import com.example.kahvefalm.enums.FalTipi;
+import com.example.kahvefalm.enums.NetworkResult;
+import com.example.kahvefalm.İnterfaces.Progress;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +42,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 
-public class FalActivity extends AppCompatActivity {
+public class FalActivity extends AppCompatActivity implements Progress {
 
     MaterialToolbar toolbar;
 
@@ -55,14 +60,16 @@ public class FalActivity extends AppCompatActivity {
     Dictionary<Integer,byte[]> imageDatas;
     boolean selectedControl[];
 
-
-
     ByteArrayOutputStream byteArrayOutputStream;
     String currentPhotoPath;
 
     AccountProfileManager accountProfileManager;
     AccountProfile accountProfile;
 
+    MaterialAlertDialogBuilder networkDialog;
+    MaterialAlertDialogBuilder photoDialog;
+
+    ProgressBar progressBar;
 
 
     @Override
@@ -72,6 +79,10 @@ public class FalActivity extends AppCompatActivity {
         //Get profile
         accountProfileManager = new AccountProfileManager(this);
         accountProfile = accountProfileManager.getAccount();
+
+        progressBar = (ProgressBar)findViewById(R.id.ProgresBar);
+
+        progressBar.setVisibility(View.GONE);
 
         message = (EditText)findViewById(R.id.editTextMessage);
 
@@ -273,16 +284,70 @@ public class FalActivity extends AppCompatActivity {
 
             DefaultFalData data = new DefaultFalData(imageDatas,messageText,selectedChip.getText().toString());
 
-            FirebaseManagerClass.SendingManager sendingManager = new FirebaseManagerClass(getApplicationContext()).new SendingManager(this,data);
+            final FirebaseManagerClass.SendingManager sendingManager = new FirebaseManagerClass(getApplicationContext()).new SendingManager(this,data);
 
             sendingManager.sendFal();
 
+
         }else{
             //AlertDialog Pop
-
+            photoDialogPop();
         }
 
 
+
+    }
+
+    private void networkDialogPop(){
+
+        networkDialog = new MaterialAlertDialogBuilder(this);
+        networkDialog.setTitle("Hata")
+                .setMessage("Uygulamayı kullanabilmeniz için ağ bağlantınızın olması gerekir.")
+                .setNeutralButton("Kapat", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        networkDialog.show();
+
+    }
+
+    private void photoDialogPop(){
+
+        photoDialog = new MaterialAlertDialogBuilder(this);
+        photoDialog.setTitle("Uyarı")
+                .setMessage("Lütfen 3 adet fotoğraf çekiniz.")
+                .setNeutralButton("Tamam", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        photoDialog.show();
+
+    }
+
+
+    @Override
+    public void progressIndicator(int key) {
+
+        if(key == 1){
+            progressBar.setVisibility(View.VISIBLE);
+        }else if(key == 0){
+            progressBar.setVisibility(View.INVISIBLE);
+
+        }
+
+    }
+
+    @Override
+    public void successDialog() {
+
+    }
+
+    @Override
+    public void failureDialog() {
 
     }
 

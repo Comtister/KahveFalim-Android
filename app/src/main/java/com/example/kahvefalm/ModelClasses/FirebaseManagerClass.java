@@ -1,9 +1,11 @@
-package com.example.kahvefalm.classes;
+package com.example.kahvefalm.ModelClasses;
 
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import androidx.annotation.NonNull;
+import com.example.kahvefalm.Controllers.FalActivity;
+import com.example.kahvefalm.İnterfaces.Progress;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,24 +22,25 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FirebaseManagerClass {
+public class FirebaseManagerClass extends NetworkManager {
 
 
     private AccountProfile profile;
 
     public FirebaseManagerClass(Context context){
+        super(context);
         this.profile = new AccountProfileManager(context).getAccount();
     }
 
 
 
 
-    public class SendingManager{
+    public class SendingManager {
 
-        private Activity activity;
+
 
         private DefaultFalData data;
-
+        private Progress p;
         private String date;
         private String[] filePath;
         private StorageReference[] fileName;
@@ -48,10 +51,12 @@ public class FirebaseManagerClass {
         private StorageReference referenceParent;
 
 
+
       public SendingManager(Activity activity,DefaultFalData data){
 
-          this.activity = activity;
           this.data = data;
+
+          p = (FalActivity)activity;
 
           this.date = new SimpleDateFormat("dd.MM.yy 'at' HH:mm:ss").format(new Date());
           this.filePath = new String[3];
@@ -66,6 +71,15 @@ public class FirebaseManagerClass {
 
 
         public void sendFal(){
+
+
+          if(!(checkNet())){
+              //Dialog pop
+              return;
+          }
+
+
+            p.progressIndicator(1);
 
             filePath[sendCounter] = profile.getId()+"/"+date+"/"+"foto"+sendCounter;
             fileName[sendCounter] = referenceParent.child(filePath[sendCounter]);
@@ -90,26 +104,30 @@ public class FirebaseManagerClass {
                         uriS.add(task.getResult());
                         DefaultFalData falData = new DefaultFalData(data,uriS);
                         sendData(falData);
-
                         sendCounter = 0;
+
                     }else {
                         uriS.add(task.getResult());
                         sendCounter++;
                         sendFal();
+
                     }
 
 
                 }
             });
 
+
         }
 
 
         private void sendData(DefaultFalData falData){
 
+
+
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-             DocumentReference reference = firestore.collection("gonderilen_fallar").document(profile.getId()).collection(date).document("Fal");
+            DocumentReference reference = firestore.collection("gonderilen_fallar").document(profile.getId()).collection(date).document("Fal");
 
 
             Map<String,Object> data = new HashMap<>();
@@ -127,19 +145,19 @@ public class FirebaseManagerClass {
                  @Override
                  public void onSuccess(Void aVoid) {
                      //Okay Animation and finish activity
-
+                     p.progressIndicator(0);
                  }
              }).addOnFailureListener(new OnFailureListener() {
                  @Override
                  public void onFailure(@NonNull Exception e) {
                      //Alert Dialog Pop
-
+                    p.failureDialog();
                  }
              });
 
+
+
         }
-
-
 
 
     }

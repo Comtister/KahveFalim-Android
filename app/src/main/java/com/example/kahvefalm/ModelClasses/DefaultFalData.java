@@ -1,4 +1,4 @@
-package com.example.kahvefalm.classes;
+package com.example.kahvefalm.ModelClasses;
 
 import android.net.Uri;
 import java.io.Serializable;

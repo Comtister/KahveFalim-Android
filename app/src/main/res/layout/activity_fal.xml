@@ -2,8 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/falLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarFal"
@@ -17,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/arrow_back"
         app:title="Kahve Falım" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -109,8 +113,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="50dp"
-        android:text="Gönder"
         android:onClick="gonder"
+        android:text="Gönder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -145,58 +149,71 @@
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/image_background"
-                android:onClick="fotoYukle"
-                android:scaleType="fitXY"
-                android:padding="5dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:adjustViewBounds="true"
+                android:background="@drawable/image_background"
+                android:onClick="fotoYukle"
+                android:padding="5dp"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/fotosec" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/image_background"
-                android:onClick="fotoYukle"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/fotosec"
-                android:padding="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:adjustViewBounds="true"/>
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/image_background"
+                android:onClick="fotoYukle"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/fotosec" />
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/image_background"
-                android:onClick="fotoYukle"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/fotosec"
-                android:padding="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:adjustViewBounds="true"/>
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/image_background"
+                android:onClick="fotoYukle"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/fotosec" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/editTextMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/profile_attirbutes_background"
             android:ems="10"
             android:hint="Bize Yazın"
             android:inputType="textMultiLine"
             android:lines="2"
             android:maxLines="2"
-            android:background="@drawable/profile_attirbutes_background"
-            android:padding="20dp"
-            android:layout_margin="10dp"
-            />
+            android:padding="20dp" />
 
     </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/ProgresBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
