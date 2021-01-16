@@ -1,4 +1,4 @@
-package com.example.kahvefalm.ModelClasses;
+package com.example.kahvefalm.model;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -7,9 +7,9 @@ import android.net.NetworkCapabilities;
 
 public class NetworkManager {
 
-   protected Context context;
+    protected Context context;
 
-   public NetworkManager(Context context){
+    public NetworkManager(Context context){
         this.context = context;
     }
 
@@ -26,3 +26,4 @@ public class NetworkManager {
 
 
 }
+

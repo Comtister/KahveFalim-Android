@@ -1,11 +1,11 @@
-package com.example.kahvefalm.ModelClasses;
+package com.example.kahvefalm.model;
 
 import com.example.kahvefalm.enums.Cinsiyet;
 import com.example.kahvefalm.enums.MedeniDurum;
 
 import java.io.Serializable;
 
-public class AccountProfile implements Serializable {
+public class Profile implements Serializable {
 
     private String name;
     private String mail;
@@ -14,7 +14,7 @@ public class AccountProfile implements Serializable {
     private int yas;
     private MedeniDurum medeniDurum;
 
-    public AccountProfile(String name, String mail, String id) {
+    public Profile(String name, String mail, String id) {
         this.name = name;
         this.mail = mail;
         this.id = id;
@@ -22,7 +22,7 @@ public class AccountProfile implements Serializable {
 
     }
 
-    public AccountProfile(String name, String mail, String id, Cinsiyet cinsiyet, int yas,MedeniDurum medeniDurum) {
+    public Profile(String name, String mail, String id, Cinsiyet cinsiyet, int yas,MedeniDurum medeniDurum) {
         this.name = name;
         this.mail = mail;
         this.id = id;

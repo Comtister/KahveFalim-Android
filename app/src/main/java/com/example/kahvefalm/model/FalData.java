@@ -1,27 +1,26 @@
-package com.example.kahvefalm.ModelClasses;
+package com.example.kahvefalm.model;
 
 import android.net.Uri;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 
-
-public class DefaultFalData implements Serializable {
+public class FalData implements Serializable {
 
     private Dictionary<Integer,byte[]> imageDatas;
     private ArrayList<Uri> imageDataURL;
     private String message;
     private String falTipi;
 
-    public DefaultFalData(Dictionary<Integer,byte[]> imageDatas,String message,String falTipi){
+    public FalData(Dictionary<Integer,byte[]> imageDatas,String message,String falTipi){
         this.imageDatas = imageDatas;
         this.message = message;
         this.falTipi = falTipi;
     }
 
-    public DefaultFalData(DefaultFalData ownDatas,ArrayList<Uri> imageDataURL){
-       this(ownDatas.imageDatas,ownDatas.message,ownDatas.falTipi);
-       this.imageDataURL = imageDataURL;
+    public FalData(FalData ownDatas, ArrayList<Uri> imageDataURL){
+        this(ownDatas.imageDatas,ownDatas.message,ownDatas.falTipi);
+        this.imageDataURL = imageDataURL;
     }
 
     public Dictionary<Integer, byte[]> getImageDatas() {
@@ -39,4 +38,6 @@ public class DefaultFalData implements Serializable {
     public String getFalTipi() {
         return falTipi;
     }
+
+
 }
