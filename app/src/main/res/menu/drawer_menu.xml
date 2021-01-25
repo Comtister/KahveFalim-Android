@@ -5,19 +5,21 @@
 
         <item
                 android:id="@+id/profil_action"
-                android:title="Profil"/>
+                android:title="Profil"
+                android:icon="@drawable/ic_profile"/>
 
         <item
                 android:id="@+id/fallarim_action"
-                android:title="Fallrım"/>
+                android:title="Fallarım"
+                android:icon="@drawable/ic_fallarim"/>
         <item
-                android:id="@+id/ayarlar_action"
-                android:title="Ayarlar"/>
+                android:id="@+id/hakkinda_action"
+                android:title="Yazılım Hakkında"
+                android:icon="@drawable/ic_hakkimda"/>
+
         <item
-                android:id="@+id/kullanim_action"
-                android:title="Kullanım Koşulları"/>
-        <item
-                android:id="@+id/hakkimda_action"
-                android:title="Bize Ulaşın"/>
+                android:id="@+id/bizeulasin_action"
+                android:title="Bize Ulaşın"
+                android:icon="@drawable/ic_ulasin"/>
 
 </menu>

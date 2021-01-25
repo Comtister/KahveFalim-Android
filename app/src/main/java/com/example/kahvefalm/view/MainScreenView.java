@@ -78,9 +78,24 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId() == R.id.profil_action){
-            mainScreenController.openProfileScreen();
-            return true;
+
+        switch (item.getItemId()){
+
+            case R.id.profil_action :
+                mainScreenController.openProfileScreen();
+                break;
+            case R.id.fallarim_action :
+
+                break;
+
+            case R.id.hakkinda_action :
+
+                break;
+
+            case R.id.bizeulasin_action :
+
+                break;
+
         }
 
         return false;
@@ -89,13 +104,11 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
 
     public void backPressListener(){
 
-
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }else{
             mainScreenController.closeDrawer();
         }
-
 
     }
 

@@ -30,7 +30,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/standartFalBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:layout_weight="0.33"
                 android:clickable="true"
@@ -48,12 +48,12 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
+                        <ImageView
                             android:id="@+id/normalFalImageView"
-                            android:layout_width="match_parent"
+                            android:layout_width="128dp"
                             android:layout_height="match_parent"
                             android:layout_margin="8dp"
-                            android:src="@drawable/ic_launcher_background" />
+                            android:src="@drawable/normal_fal_icon" />
 
 
                     </LinearLayout>
@@ -68,7 +68,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Başlık"
+                            android:text="Kahve Falı"
                             android:textColor="@color/black"
                             android:textSize="30sp" />
 
@@ -77,7 +77,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Açıklama"
+                            android:text="Fincan fotoğrafınızı gönderin falınızı keyifle bekleyin"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -86,7 +86,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:layout_weight="0.33"
                 android:clickable="true"
@@ -104,12 +104,12 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
+                        <ImageView
                             android:id="@+id/luksFalImageView"
-                            android:layout_width="match_parent"
+                            android:layout_width="128dp"
                             android:layout_height="match_parent"
                             android:layout_margin="8dp"
-                            android:src="@drawable/ic_launcher_background" />
+                            android:src="@drawable/super_fal_icon" />
 
 
                     </LinearLayout>
@@ -124,7 +124,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Başlık"
+                            android:text="Premium Fal"
                             android:textColor="@color/black"
                             android:textSize="30sp" />
 
@@ -133,7 +133,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:text="Açıklama"
+                            android:text="En kısa sürede hizmetinize sunulacak"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -142,7 +142,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:layout_weight="0.33"
                 android:clickable="true"
@@ -160,9 +160,9 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
+                        <ImageView
                             android:id="@+id/ekstraImageView"
-                            android:layout_width="match_parent"
+                            android:layout_width="96dp"
                             android:layout_height="match_parent"
                             android:layout_margin="8dp"
                             android:src="@drawable/ic_launcher_background" />
@@ -217,6 +217,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu" />
 
 
