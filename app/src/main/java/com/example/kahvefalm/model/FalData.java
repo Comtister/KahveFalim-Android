@@ -23,6 +23,12 @@ public class FalData implements Serializable {
         this.imageDataURL = imageDataURL;
     }
 
+    public FalData(ArrayList<Uri> imageDataURL , String message , String falTipi){
+        this.imageDataURL = imageDataURL;
+        this.message = message;
+        this.falTipi = falTipi;
+    }
+
     public Dictionary<Integer, byte[]> getImageDatas() {
         return imageDatas;
     }

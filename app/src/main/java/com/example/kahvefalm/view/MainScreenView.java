@@ -85,7 +85,7 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
                 mainScreenController.openProfileScreen();
                 break;
             case R.id.fallarim_action :
-
+                mainScreenController.openFallarScreen();
                 break;
 
             case R.id.hakkinda_action :

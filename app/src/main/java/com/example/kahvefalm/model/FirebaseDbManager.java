@@ -4,25 +4,33 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.core.os.HandlerCompat;
 import com.example.kahvefalm.enums.NetworkResult;
 import com.example.kahvefalm.İnterfaces.FirebaseDbListener;
+import com.example.kahvefalm.İnterfaces.FirebaseFetchListener;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -36,6 +44,70 @@ public class FirebaseDbManager extends FirebaseManager {
         super(context);
         this.executor = Executors.newSingleThreadExecutor();
         mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
+    }
+
+    public class fetchManager{
+
+        public fetchManager(){
+
+        }
+
+        public void fetchFals(final FirebaseFetchListener listener){
+
+            final HashMap<String,Object> data;
+
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+            firestore.collection("Fallar").document(profile.getId()).collection("gonderilen").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                    ArrayList<Pair<String , Map<String , Object>>> datas = new ArrayList<>();
+
+                    for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+
+                        datas.add(new Pair<String, Map<String , Object>>(documentSnapshot.getId(),documentSnapshot.getData()));
+                        System.out.println( documentSnapshot.getId());
+                    }
+                    System.out.println(datas);
+                    listener.onSuccesListener(NetworkResult.fetchSuccest , datas);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+
+            /*
+            firestore.collection("Fallar").document(profile.getId()).collection("gonderilen").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                   System.out.println(queryDocumentSnapshots.getDocuments().get(0).getData());
+
+
+
+                   HashMap<String,Object> data = (HashMap<String, Object>) queryDocumentSnapshots.getDocuments().get(0).getData();
+
+                    listener.onSuccesListener(NetworkResult.fetchSuccest , data);
+
+                   System.out.println("Burası"+data);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    listener.onFailureListener(NetworkResult.fetchFailed);
+                }
+            });*/
+
+
+
+
+        }
+
+
     }
 
 
@@ -63,7 +135,6 @@ public class FirebaseDbManager extends FirebaseManager {
             this.referenceParent = firebaseStorage.getReference();
 
         }
-
 
         public void sendFal(FalData falData, FirebaseDbListener firebaseDbListener){
 
@@ -126,7 +197,8 @@ public class FirebaseDbManager extends FirebaseManager {
 
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-            DocumentReference reference = firestore.collection("gonderilen_fallar").document(profile.getId()).collection(date).document("Fal");
+            //DocumentReference reference = firestore.collection("gonderilen_fallar").document(profile.getId()).collection(date).document("Fal");
+            DocumentReference reference = firestore.collection("Fallar").document(profile.getId()).collection("gonderilen").document(date);
 
             Map<String,Object> data = new HashMap<>();
             data.put("id",profile.getId());
