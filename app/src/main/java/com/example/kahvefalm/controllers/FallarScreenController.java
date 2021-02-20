@@ -1,6 +1,7 @@
 package com.example.kahvefalm.controllers;
 
 import android.net.Uri;
+import android.util.Log;
 import android.util.Pair;
 import android.widget.ArrayAdapter;
 import com.example.kahvefalm.enums.NetworkResult;
@@ -17,20 +18,21 @@ public class FallarScreenController {
 
 
     private FallarScreenView fallarScreenView;
-    private ArrayList<FalData> datas;
-
+    //private ArrayList<FalData> datas;
+    private ArrayList<Pair<String,FalData>> datas;
+    private ArrayList<String> docNames;
 
     public FallarScreenController(FallarScreenView fallarScreenView){
 
         this.fallarScreenView = fallarScreenView;
         datas = new ArrayList<>();
-
+        docNames = new ArrayList<>();
 
         setDatas();
     }
 
     private void setDatas(){
-
+        fallarScreenView.setIndicator(true);
         FirebaseDbManager.fetchManager fetchManager = new FirebaseDbManager(fallarScreenView.getRootView().getContext()).new fetchManager();
         fetchManager.fetchFals(new FirebaseFetchListener() {
             @Override
@@ -38,18 +40,25 @@ public class FallarScreenController {
 
                 ArrayList<Uri> imageUrls = new ArrayList<>();
 
+                for(int i = 0 ; i<data.size() ; i++){
+
+                }
+
                 for(int i = 0 ; i < data.size() ; i++){
                     String[] imageBuffer = data.get(i).second.get("images").toString().split(",");
+
+                    //docNames.add(data.get(i).first.split(" ")[0]);
+
 
                     for(int z = 0 ; z < imageBuffer.length ; z++){
                         imageUrls.add(Uri.parse(imageBuffer[z]));
                     }
                     FalData fetchData = new FalData(imageUrls,data.get(i).second.get("message").toString(),data.get(i).second.get("ilgi").toString());
-                    datas.add(fetchData);
+                    datas.add(new Pair<String, FalData>(data.get(i).first,fetchData));
                 }
 
                 fallarScreenView.setList(datas);
-
+                fallarScreenView.setIndicator(false);
 
 
                 /*

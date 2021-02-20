@@ -36,6 +36,8 @@
 
         <activity android:name=".activities.FallarActivity"/>
 
+        <activity android:name=".activities.FalGosterActivity"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.android.fileprovider"

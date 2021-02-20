@@ -1,9 +1,11 @@
 package com.example.kahvefalm.view;
 
 import android.content.Context;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,10 +24,15 @@ public class FallarScreenView {
     private RecyclerView fallarList;
     private FallarListAdapter adapter;
     private String[] data;
+    private ProgressBar progressBar;
 
     public FallarScreenView(Context context , ViewGroup viewGroup){
 
         rootView = LayoutInflater.from(context).inflate(R.layout.activity_fallar,viewGroup);
+
+        progressBar = (ProgressBar) rootView.findViewById(R.id.ProgresBarFallar);
+        progressBar.setVisibility(View.GONE);
+
         this.fallarScreenController = new FallarScreenController(this);
 
         data = new String[5];
@@ -39,14 +46,13 @@ public class FallarScreenView {
 
     public void initViews(){
 
-
-    }
-
-    public void setList(ArrayList<FalData> data){
-
-        fallarList = rootView.findViewById(R.id.fallarList);
+        fallarList = (RecyclerView) rootView.findViewById(R.id.fallarList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(rootView.getContext(),RecyclerView.VERTICAL,false);
         fallarList.setLayoutManager(layoutManager);
+    }
+
+    public void setList(ArrayList<Pair<String,FalData>> data){
+
         adapter = new FallarListAdapter(data);
         fallarList.setAdapter(adapter);
 
@@ -54,7 +60,11 @@ public class FallarScreenView {
 
     public void setIndicator(boolean state){
 
-
+    if(state){
+        progressBar.setVisibility(View.VISIBLE);
+    }else{
+        progressBar.setVisibility(View.GONE);
+    }
 
     }
 

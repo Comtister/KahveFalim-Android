@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.util.Pair;
-
 import androidx.annotation.NonNull;
 import androidx.core.os.HandlerCompat;
 import com.example.kahvefalm.enums.NetworkResult;
