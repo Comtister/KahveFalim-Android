@@ -1,6 +1,8 @@
 package com.example.kahvefalm.model;
 
 import android.net.Uri;
+import android.widget.ArrayAdapter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -11,6 +13,7 @@ public class FalData implements Serializable {
     private ArrayList<Uri> imageDataURL;
     private String message;
     private String falTipi;
+    private String cevap = "";
 
     public FalData(Dictionary<Integer,byte[]> imageDatas,String message,String falTipi){
         this.imageDatas = imageDatas;
@@ -29,6 +32,11 @@ public class FalData implements Serializable {
         this.falTipi = falTipi;
     }
 
+    public FalData(FalData data , String cevap){
+        this(data.imageDataURL,data.message,data.falTipi);
+        this.cevap = cevap;
+    }
+
     public Dictionary<Integer, byte[]> getImageDatas() {
         return imageDatas;
     }
@@ -45,5 +53,21 @@ public class FalData implements Serializable {
         return falTipi;
     }
 
+    public String getCevap() {
+        return cevap;
+    }
+
+    public ArrayList<String> getUrlString(){
+
+        ArrayList<String> stringUrls = new ArrayList<>();
+
+        for(int i = 0 ; i < this.imageDataURL.size() ; i++ ){
+
+            stringUrls.add(this.imageDataURL.get(i).toString());
+
+        }
+        System.out.println("SINIFTAN DÖNEN" + stringUrls);
+        return stringUrls;
+    }
 
 }

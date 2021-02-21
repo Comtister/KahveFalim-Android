@@ -209,7 +209,7 @@ public class FirebaseDbManager extends FirebaseManager {
             data.put("message",falData.getMessage());
             data.put("mail",profile.getMail());
             data.put("images",falData.getImageDataURL().toString());
-
+            data.put("cevap",falData.getCevap());
             reference.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

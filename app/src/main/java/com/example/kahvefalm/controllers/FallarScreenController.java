@@ -38,24 +38,26 @@ public class FallarScreenController {
             @Override
             public void onSuccesListener(NetworkResult result, ArrayList<Pair<String , Map<String , Object>>> data) {
 
-                ArrayList<Uri> imageUrls = new ArrayList<>();
 
-                for(int i = 0 ; i<data.size() ; i++){
 
-                }
 
                 for(int i = 0 ; i < data.size() ; i++){
                     String[] imageBuffer = data.get(i).second.get("images").toString().split(",");
 
                     //docNames.add(data.get(i).first.split(" ")[0]);
-
+                    ArrayList<Uri> imageUrls = new ArrayList<>();
 
                     for(int z = 0 ; z < imageBuffer.length ; z++){
                         imageUrls.add(Uri.parse(imageBuffer[z]));
                     }
                     FalData fetchData = new FalData(imageUrls,data.get(i).second.get("message").toString(),data.get(i).second.get("ilgi").toString());
-                    datas.add(new Pair<String, FalData>(data.get(i).first,fetchData));
+                    System.out.println("OLUŞAN DATA" + fetchData.getImageDataURL());
+                    FalData fetchData2 = new FalData(fetchData,data.get(i).second.get("cevap").toString());
+                    System.out.println("OLUŞAN DATA" + fetchData2.getImageDataURL());
+                    datas.add(new Pair<String, FalData>(data.get(i).first,fetchData2));
+                    //imageUrls.clear();
                 }
+
 
                 fallarScreenView.setList(datas);
                 fallarScreenView.setIndicator(false);

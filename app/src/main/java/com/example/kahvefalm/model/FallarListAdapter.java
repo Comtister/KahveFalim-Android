@@ -1,6 +1,9 @@
 package com.example.kahvefalm.model;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.kahvefalm.R;
 import com.example.kahvefalm.activities.FalGosterActivity;
+import com.google.protobuf.Any;
 
 import java.util.ArrayList;
 
@@ -36,8 +40,16 @@ public class FallarListAdapter extends RecyclerView.Adapter<FallarListAdapter.Fa
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(parent.getContext(),FalGosterActivity.class);
-                intent.putExtra("falDate",datas.get(holder.getLayoutPosition()).first);
-                intent.putExtra("Data",datas.get(holder.getLayoutPosition()).second);
+
+                Bundle dataBundle = new Bundle();
+
+                dataBundle.putString("falDate",datas.get(holder.getLayoutPosition()).first);
+                dataBundle.putStringArrayList("imageUrls",datas.get(holder.getLayoutPosition()).second.getUrlString());
+                dataBundle.putString("message",datas.get(holder.getLayoutPosition()).second.getMessage());
+                dataBundle.putString("falTipi",datas.get(holder.getLayoutPosition()).second.getFalTipi());
+                dataBundle.putString("cevap",datas.get(holder.getLayoutPosition()).second.getCevap());
+                intent.putExtra("Datas",dataBundle);
+
                 parent.getContext().startActivity(intent);
             }
         });
@@ -48,8 +60,17 @@ public class FallarListAdapter extends RecyclerView.Adapter<FallarListAdapter.Fa
     @Override
     public void onBindViewHolder(@NonNull FallarListViewHolder holder, int position) {
 
-        holder.baslik.setText("Gönderi Tarihi : " + datas.get(position).first);
+        holder.baslik.setText("Gönderilen Tarihi : " + datas.get(position).first);
+        holder.detay.setText("Konu : " + datas.get(position).second.getFalTipi());
 
+        if(datas.get(position).second.getCevap().equals("")){
+
+            holder.durum.setTextColor(Color.parseColor("#000000"));
+            holder.durum.setText("Cevaplanmadı");
+        }else {
+            holder.durum.setTextColor(Color.parseColor("#20d400"));
+            holder.durum.setText("Cevaplandı");
+        }
 
     }
 

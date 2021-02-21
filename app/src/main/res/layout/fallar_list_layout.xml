@@ -9,7 +9,7 @@
         android:id="@+id/falCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/ArkaGri"
+        app:cardBackgroundColor="@color/ArkaGri2"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp"
         android:clickable="true"
@@ -18,16 +18,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
-            <TextView
-                android:id="@+id/fallarBaslik"
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="02-06-2021"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_height="match_parent"
+                android:background="@drawable/list_item_title">
+
+                <TextView
+                    android:id="@+id/fallarBaslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="02-06-2021sadasdsadsadasdasdasdasd"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:layout_marginLeft="10dp"
+                    />
+
+            </FrameLayout>
+
+
 
             <TextView
                 android:id="@+id/fallarKonu"
