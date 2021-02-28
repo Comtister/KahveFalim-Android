@@ -49,11 +49,12 @@ public class ProfileScreenController {
 
     public void saveProfile(){
 
-        profileManager.setFirstLogin();
+
 
         if(!(profilScreenView.getYasEditText().getText().toString().equals(""))){
 
-           int yas = Integer.parseInt(profilScreenView.getYasEditText().getText().toString());
+            profileManager.setFirstLogin();
+            int yas = Integer.parseInt(profilScreenView.getYasEditText().getText().toString());
 
             Profile account = new Profile(profile.getName(),profile.getMail(),profile.getId(),accountCinsiyet,yas,accountMedeniDurum);
 
@@ -95,9 +96,18 @@ public class ProfileScreenController {
             accountMedeniDurum = MedeniDurum.values()[i];
         }
 
-
+        checkProfileState();
     }
 
+    private void checkProfileState(){
+
+        if(accountCinsiyet == Cinsiyet.DİĞER || accountMedeniDurum == MedeniDurum.Diğer){
+            profilScreenView.setDurumImage(false);
+        }else{
+            profilScreenView.setDurumImage(true);
+        }
+
+    }
 
 
     public int BinarySearchStr(String[] array,String value){

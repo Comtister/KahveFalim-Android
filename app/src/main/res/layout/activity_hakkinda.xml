@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarFalGoster"
+        android:id="@+id/toolbarHakkinda"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -19,96 +19,87 @@
         app:navigationIcon="@drawable/arrow_back"/>
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarFalGoster">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarHakkinda">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/CevapBaslikText"
+                android:id="@+id/hakkindaBaslik"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/hakkindaBaslik"
                 android:gravity="center"
-                android:text="Fal Yorumu"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="32sp"
+                android:textColor="@color/PrimaryColor2"/>
 
             <TextView
-                android:id="@+id/CevapText"
+                android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/hakkinda"
                 android:gravity="center"
-                android:text="Henüz Cevaplanmadı "
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/DetayBaslikText"
+                android:id="@+id/hakkindaBaslik2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:text="@string/hakkindaBaslikKullanimaAcma"
                 android:gravity="center"
-                android:text="Detaylar"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="32sp"
+                android:textColor="@color/PrimaryColor2"/>
 
             <TextView
-                android:id="@+id/FalkonuDetayText"
+                android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/hakkindaKullanimaAcma"
                 android:gravity="center"
-                android:text="Fal Konusu :"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/FalMesajBaslikDetayText"
+                android:id="@+id/hakkindaBaslik3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:text="@string/hakkindaBilgiGuvenligiBaslik"
                 android:gravity="center"
-                android:text="İletilen Mesaj"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="32sp"
+                android:textColor="@color/PrimaryColor2"/>
 
             <TextView
-                android:id="@+id/FalMesajDetayText"
+                android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:text="@string/hakkindaBilgiGuvenligi"
                 android:gravity="center"
-                android:text="Gelen Mesaj"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp"/>
 
-            <ImageView
-                android:id="@+id/GelenFoto1"
+            <TextView
+                android:id="@+id/hakkindaBaslik4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/fotosec" />
+                android:text="@string/hakkindaGuvenliBaglantiBaslik"
+                android:gravity="center"
+                android:textSize="32sp"
+                android:textColor="@color/PrimaryColor2"/>
 
-            <ImageView
-                android:id="@+id/GelenFoto2"
+            <TextView
+                android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/fotosec" />
-
-            <ImageView
-                android:id="@+id/GelenFoto3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/fotosec" />
+                android:text="@string/hakkindaGuvenliBaglanti"
+                android:gravity="center"
+                android:textSize="18sp"/>
 
 
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

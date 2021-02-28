@@ -89,11 +89,11 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
                 break;
 
             case R.id.hakkinda_action :
-
+                mainScreenController.openHakkindaScreen();
                 break;
 
             case R.id.bizeulasin_action :
-
+                mainScreenController.openİletisimScreen();
                 break;
 
         }

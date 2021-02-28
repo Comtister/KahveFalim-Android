@@ -38,6 +38,10 @@
 
         <activity android:name=".activities.FalGosterActivity"/>
 
+        <activity android:name=".activities.HakkindaActivity"/>
+
+        <activity android:name=".activities.UlasinActivity"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.android.fileprovider"

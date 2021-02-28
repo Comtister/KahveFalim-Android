@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.kahvefalm.R;
 import com.example.kahvefalm.controllers.FalGosterController;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class FalGosterView {
     private ImageView image1;
     private ImageView image2;
     private ImageView image3;
+
+    private MaterialToolbar toolbar;
 
     public FalGosterView(Context context , ViewGroup viewGroup){
 
@@ -43,6 +46,23 @@ public class FalGosterView {
        image2 = (ImageView)rootView.findViewById(R.id.GelenFoto2);
        image3 = (ImageView)rootView.findViewById(R.id.GelenFoto3);
 
+       toolbar = (MaterialToolbar)rootView.findViewById(R.id.toolbarFalGoster);
+
+
+    }
+
+    private void setToolbar(String date){
+
+        toolbar.setTitle(date);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                falGosterController.closeScreen();
+
+            }
+        });
 
     }
 
@@ -58,10 +78,11 @@ public class FalGosterView {
 
     }
 
-    public void setDetay(String message , String falTipi){
+    public void setDetay(String message , String falTipi,String date){
         Log.i("Faltipi = ",falTipi);
         konuText.setText(falTipi);
         iletiText.setText(message);
+        setToolbar(date);
 
     }
 

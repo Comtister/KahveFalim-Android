@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.example.kahvefalm.activities.FalActivity;
+import com.example.kahvefalm.activities.MainActivity;
 import com.example.kahvefalm.model.BitmapEditor;
 import com.example.kahvefalm.model.FalData;
 import com.example.kahvefalm.model.FileManager;
@@ -166,6 +167,8 @@ public class DfFalScreenController {
                 @Override
                 public void onSuccessListener(NetworkResult result) {
                     dfFalScreenView.setProgressIndicatorInvisible();
+                    Intent intent = new Intent(dfFalScreenView.getRootView().getContext(), MainActivity.class);
+                    ((FalActivity)dfFalScreenView.getRootView().getContext()).startActivity(intent);
                 }
             });
 

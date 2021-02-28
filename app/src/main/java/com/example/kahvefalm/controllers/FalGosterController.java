@@ -34,10 +34,15 @@ public class FalGosterController {
         String falTipi = datas.getString("falTipi");
         String cevap = datas.getString("cevap");
 
-        falGosterView.setDetay(message,falTipi);
+        falGosterView.setDetay(message,falTipi,falDate);
         falGosterView.setFalYorumu(cevap);
         falGosterView.setImages(imageUrlString);
     }
 
+    public void closeScreen(){
+
+        ((FalGosterActivity)falGosterView.getRootView().getContext()).finish();
+
+    }
 
 }

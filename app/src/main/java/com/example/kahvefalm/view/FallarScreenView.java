@@ -14,6 +14,7 @@ import com.example.kahvefalm.R;
 import com.example.kahvefalm.controllers.FallarScreenController;
 import com.example.kahvefalm.model.FalData;
 import com.example.kahvefalm.model.FallarListAdapter;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,8 @@ public class FallarScreenView {
     private FallarListAdapter adapter;
     private String[] data;
     private ProgressBar progressBar;
+
+    private MaterialToolbar toolbar;
 
     public FallarScreenView(Context context , ViewGroup viewGroup){
 
@@ -49,6 +52,24 @@ public class FallarScreenView {
         fallarList = (RecyclerView) rootView.findViewById(R.id.fallarList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(rootView.getContext(),RecyclerView.VERTICAL,false);
         fallarList.setLayoutManager(layoutManager);
+
+        toolbar = (MaterialToolbar)rootView.findViewById(R.id.toolbarFallar);
+        setToolbar();
+
+    }
+
+    private void setToolbar(){
+
+        toolbar.setTitle("Gönderilen Fallar");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                fallarScreenController.closeFallarScreen();
+            }
+        });
+
     }
 
     public void setList(ArrayList<Pair<String,FalData>> data){

@@ -1,9 +1,13 @@
 package com.example.kahvefalm.controllers;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
 import android.widget.ArrayAdapter;
+
+import com.example.kahvefalm.activities.FallarActivity;
+import com.example.kahvefalm.activities.MainActivity;
 import com.example.kahvefalm.enums.NetworkResult;
 import com.example.kahvefalm.model.FalData;
 import com.example.kahvefalm.model.FirebaseDbManager;
@@ -85,6 +89,12 @@ public class FallarScreenController {
 
             }
         });
+
+    }
+
+    public void closeFallarScreen(){
+
+        ((FallarActivity)fallarScreenView.getRootView().getContext()).finish();
 
     }
 

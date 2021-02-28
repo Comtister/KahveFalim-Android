@@ -4,8 +4,10 @@ import android.content.Intent;
 
 import com.example.kahvefalm.activities.FalActivity;
 import com.example.kahvefalm.activities.FallarActivity;
+import com.example.kahvefalm.activities.HakkindaActivity;
 import com.example.kahvefalm.activities.MainActivity;
 import com.example.kahvefalm.activities.ProfileActivity;
+import com.example.kahvefalm.activities.UlasinActivity;
 import com.example.kahvefalm.view.FallarScreenView;
 import com.example.kahvefalm.view.MainScreenView;
 
@@ -50,7 +52,19 @@ public class MainScreenController {
 
     }
 
+    public void openHakkindaScreen(){
 
+        Intent intent = new Intent(((MainActivity)mainScreenView.getRootView().getContext()), HakkindaActivity.class);
+        ((MainActivity)mainScreenView.getRootView().getContext()).startActivity(intent);
+
+    }
+
+    public void openİletisimScreen(){
+
+        Intent intent = new Intent(((MainActivity)mainScreenView.getRootView().getContext()), UlasinActivity.class);
+        ((MainActivity)mainScreenView.getRootView().getContext()).startActivity(intent);
+
+    }
 
 
 

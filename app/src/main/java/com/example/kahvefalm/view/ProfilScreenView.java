@@ -2,6 +2,7 @@ package com.example.kahvefalm.view;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -138,7 +139,7 @@ public class ProfilScreenView implements AdapterView.OnItemSelectedListener {
         mailView.setText(profile.getMail());
         cikisBtn.setVisibility(View.GONE);
 
-        toolbar.setVisibility(View.INVISIBLE);
+        toolbar.setVisibility(View.GONE);
         cinsiyetSpinner.setSelection(2);
         medeniDurumSpinner.setSelection(5);
     }
@@ -174,6 +175,7 @@ public class ProfilScreenView implements AdapterView.OnItemSelectedListener {
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
        profileScreenController.spinnerItemSelected(adapterView,view,i,l);
     }
 
@@ -192,5 +194,15 @@ public class ProfilScreenView implements AdapterView.OnItemSelectedListener {
 
     public EditText getYasEditText() {
         return yasEditText;
+    }
+
+    public void setDurumImage(boolean state){
+
+        if(state){
+            durumImage.setImageResource(R.drawable.olumlu);
+        }else{
+            durumImage.setImageResource(R.drawable.olumsuz);
+        }
+
     }
 }

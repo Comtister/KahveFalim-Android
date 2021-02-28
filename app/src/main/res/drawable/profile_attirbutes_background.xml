@@ -3,15 +3,11 @@
 
     <stroke
         android:width="3dp"
-        android:color="@color/secondaryBackground"
-        />
-
-    <corners
-        android:radius="10dp"
+        android:color="@color/Beyaz"
         />
 
     <solid
-        android:color="@color/secondaryBackground"
+        android:color="@color/ArkaGri2"
         />
 
 
