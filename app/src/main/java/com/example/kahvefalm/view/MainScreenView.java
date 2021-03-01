@@ -14,6 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.kahvefalm.activities.MainActivity;
 import com.example.kahvefalm.R;
 import com.example.kahvefalm.controllers.MainScreenController;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
@@ -31,7 +33,8 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
 
     private ActionBarDrawerToggle toggle;
 
-
+    private AdView ustReklam;
+    private AdView altReklam;
 
 
     public MainScreenView(Context context, ViewGroup viewGroup){
@@ -47,6 +50,8 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
         toolbar = (MaterialToolbar)rootView.findViewById(R.id.toolbarMain);
         navigationView = (NavigationView)rootView.findViewById(R.id.NavigationView);
         drawerLayout = (DrawerLayout)rootView.findViewById(R.id.drawerLayout);
+
+
         //Setting navigation and drawer
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -68,6 +73,19 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
 
 
 
+
+    }
+
+    public void setAds(){
+        ustReklam = rootView.findViewById(R.id.adView);
+        altReklam = rootView.findViewById(R.id.adView2);
+
+    }
+
+    public void loadAds(AdRequest adRequest){
+
+        ustReklam.loadAd(adRequest);
+        altReklam.loadAd(adRequest);
 
     }
 

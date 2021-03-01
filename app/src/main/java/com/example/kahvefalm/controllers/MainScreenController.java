@@ -10,6 +10,7 @@ import com.example.kahvefalm.activities.ProfileActivity;
 import com.example.kahvefalm.activities.UlasinActivity;
 import com.example.kahvefalm.view.FallarScreenView;
 import com.example.kahvefalm.view.MainScreenView;
+import com.google.android.gms.ads.AdRequest;
 
 public class MainScreenController {
 
@@ -17,6 +18,15 @@ public class MainScreenController {
 
     public MainScreenController(MainScreenView mainScreenView){
         this.mainScreenView = mainScreenView;
+        mainScreenView.setAds();
+        adRequest();
+    }
+
+    public void adRequest(){
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mainScreenView.loadAds(adRequest);
+
     }
 
     public void closeDrawer(){

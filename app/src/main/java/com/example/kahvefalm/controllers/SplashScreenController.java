@@ -11,6 +11,7 @@ import com.example.kahvefalm.model.NetworkManager;
 import com.example.kahvefalm.model.Profile;
 import com.example.kahvefalm.model.ProfileManager;
 import com.example.kahvefalm.view.SplashScreenView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class SplashScreenController {
@@ -32,7 +33,7 @@ public class SplashScreenController {
         firebaseAuthManager = new FirebaseAuthManager(splashScreenView.rootView.getContext());
         profileManager = new ProfileManager(splashScreenView.rootView.getContext());
         networkManager = new NetworkManager(splashScreenView.rootView.getContext());
-
+        MobileAds.initialize(splashScreenView.rootView.getContext());
     }
 
     public void setupGoogleSign(){
