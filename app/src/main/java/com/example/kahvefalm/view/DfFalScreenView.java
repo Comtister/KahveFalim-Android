@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.example.kahvefalm.R;
 import com.example.kahvefalm.controllers.DfFalScreenController;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -199,6 +201,12 @@ public class DfFalScreenView implements View.OnClickListener  {
                 });
         photoDialog.show();
 
+
+    }
+
+    public void errorToast(String message){
+
+        Toast.makeText(rootView.getContext(),message,Toast.LENGTH_LONG).show();
 
     }
 

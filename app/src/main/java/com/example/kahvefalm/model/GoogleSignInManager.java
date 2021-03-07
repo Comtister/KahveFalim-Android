@@ -2,6 +2,8 @@ package com.example.kahvefalm.model;
 
 import android.content.Context;
 import android.content.Intent;
+
+import com.example.kahvefalm.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

@@ -1,5 +1,6 @@
 package com.example.kahvefalm.model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Handler;
@@ -18,7 +19,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,6 +48,37 @@ public class FirebaseDbManager extends FirebaseManager {
         mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
     }
 
+
+    public class deleteManager{
+
+
+
+        public deleteManager(){
+
+        }
+
+        public void deleteData(String falName){
+
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+            firestore.collection("Fallar").document(profile.getId()).collection("gonderilen").document(falName).delete()
+                    .addOnSuccessListener(executor, new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                                Log.i("Succes","sdas");
+                        }
+                    }).addOnFailureListener(executor, new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.i("fail","sdas");
+                }
+            });
+
+        }
+
+    }
+
+
     public class fetchManager{
 
         public fetchManager(){
@@ -67,6 +101,7 @@ public class FirebaseDbManager extends FirebaseManager {
 
                         datas.add(new Pair<String, Map<String , Object>>(documentSnapshot.getId(),documentSnapshot.getData()));
                         System.out.println( documentSnapshot.getId());
+
                     }
                     System.out.println(datas);
                     listener.onSuccesListener(NetworkResult.fetchSuccest , datas);

@@ -1,5 +1,6 @@
 package com.example.kahvefalm.model;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.kahvefalm.R;
 import com.example.kahvefalm.activities.FalGosterActivity;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.protobuf.Any;
 
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ public class FallarListAdapter extends RecyclerView.Adapter<FallarListAdapter.Fa
 
     }
 
+
+
     @NonNull
     @Override
     public FallarListViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
@@ -35,6 +39,7 @@ public class FallarListAdapter extends RecyclerView.Adapter<FallarListAdapter.Fa
 
 
         final FallarListViewHolder holder = new FallarListViewHolder(card);
+
 
         card.findViewById(R.id.falCard).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +56,33 @@ public class FallarListAdapter extends RecyclerView.Adapter<FallarListAdapter.Fa
                 intent.putExtra("Datas",dataBundle);
 
                 parent.getContext().startActivity(intent);
+            }
+        });
+
+        card.findViewById(R.id.falCard).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                final MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(parent.getContext());
+                dialogBuilder.setTitle("Uyarı");
+                dialogBuilder.setMessage("Falı silmek istediğinize eminmisiniz");
+                dialogBuilder.setPositiveButton("İptal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                dialogBuilder.setNegativeButton("Sil", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseDbManager.deleteManager deleteManager = new FirebaseDbManager(parent.getContext()).new deleteManager();
+                        deleteManager.deleteData(datas.get(holder.getLayoutPosition()).first);
+                        datas.remove(holder.getLayoutPosition());
+                        notifyDataSetChanged();
+                    }
+                }).show();
+
+                return true;
             }
         });
 

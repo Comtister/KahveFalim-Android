@@ -34,6 +34,10 @@ public class FalGosterController {
         String falTipi = datas.getString("falTipi");
         String cevap = datas.getString("cevap");
 
+        if(cevap.equals("")){
+            cevap = "Cevaplanmadı";
+        }
+
         falGosterView.setDetay(message,falTipi,falDate);
         falGosterView.setFalYorumu(cevap);
         falGosterView.setImages(imageUrlString);

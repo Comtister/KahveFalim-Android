@@ -114,7 +114,7 @@ public class DfFalScreenController {
 
     public void photoCameraResult(int requestCode, int resultCode, @Nullable Intent data){
 
-        if(requestCode == 1 && resultCode == RESULT_OK && data != null){
+        if(requestCode == 1 && resultCode == RESULT_OK){
 
             Size photoHolderSize = dfFalScreenView.getPhotoHolderSize();
             final int[] photoHolderNumberBuffer = new int[1];
@@ -146,6 +146,8 @@ public class DfFalScreenController {
 
 
         }
+
+        
 
     }
 

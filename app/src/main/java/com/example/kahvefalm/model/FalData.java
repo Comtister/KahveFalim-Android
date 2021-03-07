@@ -2,7 +2,6 @@ package com.example.kahvefalm.model;
 
 import android.net.Uri;
 import android.widget.ArrayAdapter;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;

@@ -2,10 +2,13 @@ package com.example.kahvefalm.model;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Size;
 import androidx.core.os.HandlerCompat;
+import androidx.exifinterface.media.ExifInterface;
+
 import com.example.kahvefalm.İnterfaces.ByteImageProcessListener;
 import com.example.kahvefalm.İnterfaces.ImageProccessListener;
 import java.io.ByteArrayOutputStream;
@@ -52,8 +55,33 @@ public class BitmapEditor {
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 Bitmap bitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
 
+                ExifInterface exifInterface = null;
+
+                try {
+
+                    exifInterface = new ExifInterface(imagePath);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    e.getLocalizedMessage();
+                }
+
+                int oriantation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_UNDEFINED);
+                Matrix matrix = new Matrix();
+
+                switch (oriantation){
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                        matrix.setRotate(90);
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        matrix.setRotate(180);
+                        break;
+                }
+
+                Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap,0,0,720,1280,matrix,false);
+
                 ByteArrayOutputStream  byteArrayOutputStream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
+                rotatedBitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
 
                 byte[] byteImage = byteArrayOutputStream.toByteArray();
 

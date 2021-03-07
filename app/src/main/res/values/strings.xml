@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">Kahve Falım</string>
+    <string name="app_name">KahveNeva</string>
 
 
     <string name="hakkindaBaslik">Uygulama Hakkında</string>
-    <string name="hakkinda">Kahve Falı uygulaması yakın çevresine verdiği hizmeti uzaklara taşımak isteyen bizler tarafından oluşturulmuştur.</string>
+    <string name="hakkinda">KahveNeva uygulaması yakın çevresine verdiği hizmeti uzaklara taşımak isteyen bizler tarafından oluşturulmuştur.</string>
     <string name="hakkindaBaslikKullanimaAcma">Kullanıma Acma</string>
     <string name="hakkindaKullanimaAcma">Uygulamayı kullanabilmek için google hesabınızın olması gerekmektedir.İlgili google hesabınız ile uygulamaya bağlandıktan sonra
     gerekli profil bilgilerini doldurarak uygulamayı kullanmaya devam edebilirsiniz.</string>
     <string name="hakkindaBilgiGuvenligiBaslik">Bilgi Güvenliği</string>
-    <string name="hakkindaBilgiGuvenligi">Kahve falım uygulaması bilgilerinizi ve fallarınızı google sunucularında tutar ve asla 3.şahıslara paylaşmaz.
+    <string name="hakkindaBilgiGuvenligi">KahveNeva uygulaması bilgilerinizi ve fallarınızı google sunucularında tutar ve asla 3.şahıslara paylaşmaz.
     Uygulama içerisinde çektiğiniz fotoğraflar cihaz hafızasında saklanır.</string>
     <string name="hakkindaGuvenliBaglantiBaslik">Güvenli Bağlantı</string>
-    <string name="hakkindaGuvenliBaglanti">Kahve Falım uygulaması istemci-sunucu mimarisi örneğidir bu sebepten çalışabilmesi için sağlıklı bir internet bağlantısına ihtiyaç duyar.
+    <string name="hakkindaGuvenliBaglanti">KahveNeva uygulaması istemci-sunucu mimarisi örneğidir bu sebepten çalışabilmesi için sağlıklı bir internet bağlantısına ihtiyaç duyar.
     Uygulamayı Wi-Fi yada 4.5G ile kullanmanızı öneririz.</string>
 
 </resources>

@@ -21,7 +21,7 @@ public class FalGosterView {
 
     private TextView cevapText;
     TextView konuText;
-    TextView iletiText;
+
 
     private ImageView image1;
     private ImageView image2;
@@ -40,7 +40,7 @@ public class FalGosterView {
 
        cevapText = (TextView)rootView.findViewById(R.id.CevapText);
        konuText = (TextView)rootView.findViewById(R.id.FalkonuDetayText);
-       iletiText = (TextView)rootView.findViewById(R.id.FalMesajDetayText);
+
 
        image1 = (ImageView)rootView.findViewById(R.id.GelenFoto1);
        image2 = (ImageView)rootView.findViewById(R.id.GelenFoto2);
@@ -80,8 +80,7 @@ public class FalGosterView {
 
     public void setDetay(String message , String falTipi,String date){
         Log.i("Faltipi = ",falTipi);
-        konuText.setText(falTipi);
-        iletiText.setText(message);
+        konuText.setText("Fal Konusu : " + falTipi);
         setToolbar(date);
 
     }

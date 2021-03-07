@@ -13,6 +13,7 @@ import com.example.kahvefalm.model.ProfileManager;
 import com.example.kahvefalm.view.SplashScreenView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.ApiException;
 
 public class SplashScreenController {
     //Initialize view reference

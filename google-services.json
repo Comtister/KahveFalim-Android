@@ -19,6 +19,14 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.kahvefalm",
+            "certificate_hash": "1fbefa3f2db017a9358c8d41f9437d612ea749b9"
+          }
+        },
+        {
+          "client_id": "941550661857-gi8shv09sc7ivlskre3s5dr0g58gto38.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kahvefalm",
             "certificate_hash": "b38124fd9ad1b9849b7672b9200528da294e23ba"
           }
         },

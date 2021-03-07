@@ -123,7 +123,7 @@ public class ProfilScreenView implements AdapterView.OnItemSelectedListener {
         cinsiyetSpinner.setOnItemSelectedListener(this);
 
         medeniDurumDatas = new String[]{MedeniDurum.Bekar.toString(),MedeniDurum.Nisanli.toString(),MedeniDurum.Evli.toString(),MedeniDurum.Dul.toString()
-                ,MedeniDurum.Ayri.toString(),MedeniDurum.Diğer.toString()};
+                ,MedeniDurum.Ayrılmış.toString(),MedeniDurum.Sevgilisi_Var.toString(),MedeniDurum.Sevgilisi_Yok.toString(),MedeniDurum.Diğer.toString()};
         menediDurumSpinnerAdapter = new ArrayAdapter(rootView.getContext(),R.layout.support_simple_spinner_dropdown_item,medeniDurumDatas);
         menediDurumSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         medeniDurumSpinner.setAdapter(menediDurumSpinnerAdapter);

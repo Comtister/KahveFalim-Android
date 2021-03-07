@@ -61,9 +61,45 @@
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Linkedin Profil : https://www.linkedin.com/in/oğuzhan-öztürk-2953388b/"
+                android:text="Linkedin : https://www.linkedin.com/in/oğuzhan-öztürk-2953388b/"
                 android:textSize="18sp"
                 android:gravity="center"/>
+
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sahip"
+                android:textColor="@color/PrimaryColor2"
+                android:textSize="32sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selim Soydan"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mail: selimgs2020@gmail.com"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="İnstagram : @selimsoydann"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+
 
         </LinearLayout>
     </ScrollView>
