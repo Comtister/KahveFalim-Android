@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.kahvefalm.activities.MainActivity;
@@ -26,6 +27,7 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
     private MainScreenController mainScreenController;
 
     private MaterialCardView standartFalBtn;
+    private MaterialCardView premiumFalBtn;
 
     private MaterialToolbar toolbar;
     private NavigationView navigationView;
@@ -47,6 +49,7 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
     public void initViews(){
         //Initialize Views
         standartFalBtn = (MaterialCardView)rootView.findViewById(R.id.standartFalBtn);
+        premiumFalBtn = (MaterialCardView)rootView.findViewById(R.id.premiumFalBtn);
         toolbar = (MaterialToolbar)rootView.findViewById(R.id.toolbarMain);
         navigationView = (NavigationView)rootView.findViewById(R.id.NavigationView);
         drawerLayout = (DrawerLayout)rootView.findViewById(R.id.drawerLayout);
@@ -71,6 +74,12 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
             }
         });
 
+        premiumFalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPreDialog();
+            }
+        });
 
 
 
@@ -91,6 +100,17 @@ public class MainScreenView implements NavigationView.OnNavigationItemSelectedLi
 
     public View getRootView() {
         return rootView;
+    }
+
+    private void showPreDialog(){
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(rootView.getContext());
+        alert.setTitle("Ops");
+        alert.setMessage("Yakında eklenecektir");
+        alert.setNeutralButton("Kapat",null);
+        alert.show();
+
+
     }
 
     @Override

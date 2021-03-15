@@ -37,7 +37,8 @@
 
         <activity android:name=".activities.FallarActivity"/>
 
-        <activity android:name=".activities.FalGosterActivity"/>
+        <activity android:name=".activities.FalGosterActivity" android:hardwareAccelerated="true"/>
+
 
         <activity android:name=".activities.HakkindaActivity"/>
 

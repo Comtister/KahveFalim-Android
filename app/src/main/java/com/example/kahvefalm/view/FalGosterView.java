@@ -72,9 +72,9 @@ public class FalGosterView {
         System.out.println(imageUrls.get(1));
         System.out.println(imageUrls.get(2));
 
-        Picasso.get().load(imageUrls.get(0).replaceAll("\\[","")).into(image1);
-        Picasso.get().load(imageUrls.get(1).replaceAll(" ","")).into(image2);
-        Picasso.get().load(imageUrls.get(2).replaceAll("]","").replaceAll(" ","")).into(image3);
+        Picasso.get().load(imageUrls.get(0).replaceAll("\\[","")).resize(640,640).into(image1);
+        Picasso.get().load(imageUrls.get(1).replaceAll(" ","")).resize(640,640).into(image2);
+        Picasso.get().load(imageUrls.get(2).replaceAll("]","").replaceAll(" ","")).resize(640,640).into(image3);
 
     }
 

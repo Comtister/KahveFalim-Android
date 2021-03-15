@@ -76,12 +76,16 @@ public class BitmapEditor {
                     case ExifInterface.ORIENTATION_ROTATE_180:
                         matrix.setRotate(180);
                         break;
+                    case ExifInterface.ORIENTATION_ROTATE_270:
+                        matrix.setRotate(270);
+                        break;
                 }
 
-                Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap,0,0,720,1280,matrix,false);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,false);
+                Bitmap finalBitmap = Bitmap.createScaledBitmap(rotatedBitmap,960,540,true);
 
                 ByteArrayOutputStream  byteArrayOutputStream = new ByteArrayOutputStream();
-                rotatedBitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
+                finalBitmap.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream);
 
                 byte[] byteImage = byteArrayOutputStream.toByteArray();
 
